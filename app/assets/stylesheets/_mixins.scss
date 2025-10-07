@@ -1,0 +1,58 @@
+// Flexbox mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Responsive mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: 576px) { @content; }
+  }
+  @else if $breakpoint == "tablet" {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == "desktop" {
+    @media (min-width: 992px) { @content; }
+  }
+  @else if $breakpoint == "large-desktop" {
+    @media (min-width: 1200px) { @content; }
+  }
+}
+
+// Button mixin
+@mixin button-variant($bg-color, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: 1px solid darken($bg-color, 5%);
+  
+  &:hover {
+    background-color: darken($bg-color, 10%);
+    border-color: darken($bg-color, 15%);
+  }
+  
+  &:active {
+    background-color: darken($bg-color, 15%);
+  }
+}
+
+// Box shadow mixin
+@mixin box-shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  @else if $level == 2 {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  @else if $level == 3 {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+

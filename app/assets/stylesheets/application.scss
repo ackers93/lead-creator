@@ -1,0 +1,12 @@
+// Main application stylesheet
+// Import order: variables -> mixins -> base -> components -> pages
+
+@import "variables";
+@import "mixins";
+@import "base";
+@import "components/buttons";
+@import "components/forms";
+@import "components/alerts";
+@import "layouts/header";
+@import "layouts/footer";
+@import "pages/home";

@@ -1,0 +1,67 @@
+// Button styles
+.btn {
+  display: inline-block;
+  padding: map-get($spacers, 2) map-get($spacers, 4);
+  font-size: $font-size-base;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border-radius: $border-radius;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all $transition-speed ease;
+  
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    @include box-shadow(2);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  @include button-variant($primary-color);
+}
+
+.btn-secondary {
+  @include button-variant($secondary-color);
+}
+
+.btn-success {
+  @include button-variant($success-color);
+}
+
+.btn-danger {
+  @include button-variant($danger-color);
+}
+
+.btn-warning {
+  @include button-variant($warning-color, $text-primary);
+}
+
+.btn-info {
+  @include button-variant($info-color);
+}
+
+.btn-light {
+  @include button-variant($light-color, $text-primary);
+}
+
+.btn-dark {
+  @include button-variant($dark-color);
+}
+
+// Button sizes
+.btn-sm {
+  padding: map-get($spacers, 1) map-get($spacers, 2);
+  font-size: $font-size-sm;
+}
+
+.btn-lg {
+  padding: map-get($spacers, 3) map-get($spacers, 5);
+  font-size: $font-size-lg;
+}
+

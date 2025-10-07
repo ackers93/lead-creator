@@ -1,0 +1,31 @@
+// Header styles
+.header {
+  background-color: $bg-white;
+  border-bottom: 1px solid $border-color;
+  padding: map-get($spacers, 3) 0;
+  @include box-shadow(1);
+  
+  .header-container {
+    @include flex-between;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 map-get($spacers, 3);
+  }
+  
+  .header-brand {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $primary-color;
+    
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: map-get($spacers, 3);
+    align-items: center;
+  }
+}
+

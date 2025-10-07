@@ -1,0 +1,88 @@
+// Form styles
+.form-group {
+  margin-bottom: map-get($spacers, 3);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: map-get($spacers, 1);
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: map-get($spacers, 2);
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-primary;
+  background-color: $bg-white;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  transition: border-color $transition-speed ease, box-shadow $transition-speed ease;
+  
+  &:focus {
+    outline: 0;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+  }
+  
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: map-get($spacers, 2);
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: map-get($spacers, 2);
+  }
+}
+
+.form-text {
+  display: block;
+  margin-top: map-get($spacers, 1);
+  font-size: $font-size-sm;
+  color: $text-muted;
+}
+
+// Devise forms styling
+.devise-form {
+  max-width: 450px;
+  margin: map-get($spacers, 5) auto;
+  padding: map-get($spacers, 4);
+  background-color: $bg-white;
+  border-radius: $border-radius;
+  @include box-shadow(2);
+  
+  h2 {
+    margin-bottom: map-get($spacers, 4);
+    text-align: center;
+  }
+  
+  .form-actions {
+    margin-top: map-get($spacers, 4);
+  }
+  
+  .devise-links {
+    margin-top: map-get($spacers, 3);
+    text-align: center;
+    font-size: $font-size-sm;
+    
+    a {
+      display: block;
+      margin-top: map-get($spacers, 1);
+    }
+  }
+}
+
