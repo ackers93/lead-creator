@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Welcome to Lead Creator</h1>
+  
+  <% if user_signed_in? %>
+    <p>Hello, <%= current_user.email %>!</p>
+    <p>You are signed in.</p>
+    <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+  <% else %>
+    <p>Please sign in to access the application.</p>
+    <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary" %>
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %>
+  <% end %>
+</div>
