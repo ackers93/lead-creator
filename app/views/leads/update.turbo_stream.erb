@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@lead), partial: "lead_card", locals: { lead: @lead } %>
+<%= turbo_stream.update "flash", partial: "shared/flash" %>
+

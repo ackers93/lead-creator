@@ -1,0 +1,61 @@
+<div class="leads-page">
+  <div class="container">
+    <div class="page-header">
+      <h1>My Leads</h1>
+      <%= link_to "New Lead", new_lead_path, class: "btn btn-primary" %>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="leads-filters">
+      <%= form_with url: leads_path, method: :get, data: { turbo_frame: "leads", turbo_action: "advance" }, class: "filters-form" do |f| %>
+        <div class="filter-row">
+          <div class="filter-group">
+            <%= f.text_field :query, 
+                            value: params[:query], 
+                            placeholder: "Search by business name, contact, or location...", 
+                            class: "form-control search-input" %>
+          </div>
+
+          <div class="filter-group">
+            <%= f.select :status, 
+                        Lead.statuses.keys.map { |s| [s.titleize, s] }, 
+                        { prompt: "All Statuses", selected: params[:status] },
+                        { class: "form-control" } %>
+          </div>
+
+          <div class="filter-group">
+            <%= f.select :interest_level, 
+                        Lead.interest_levels.keys.map { |l| [l.titleize, l] }, 
+                        { prompt: "All Interest Levels", selected: params[:interest_level] },
+                        { class: "form-control" } %>
+          </div>
+
+          <div class="filter-group">
+            <%= f.submit "Filter", class: "btn btn-secondary" %>
+            <% if params[:query].present? || params[:status].present? || params[:interest_level].present? %>
+              <%= link_to "Clear", leads_path, class: "btn btn-light" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Leads List -->
+    <%= turbo_frame_tag "leads" do %>
+      <% if @leads.any? %>
+        <div class="leads-grid">
+          <% @leads.each do |lead| %>
+            <%= render "lead_card", lead: lead %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <div class="empty-state-icon">📋</div>
+          <h3>No leads found</h3>
+          <p>Start by creating your first lead or adjust your filters.</p>
+          <%= link_to "Create Lead", new_lead_path, class: "btn btn-primary", data: { turbo_frame: "_top" } %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<div class="leads-page">
+  <div class="container">
+    <div class="page-header">
+      <h1><%= @lead.business_name %></h1>
+      <div class="header-actions">
+        <%= link_to "Edit", edit_lead_path(@lead), class: "btn btn-primary" %>
+        <%= button_to "Delete", lead_path(@lead), 
+                     method: :delete, 
+                     data: { turbo_confirm: "Are you sure?" },
+                     class: "btn btn-danger" %>
+        <%= link_to "Back to Leads", leads_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+
+    <div class="lead-detail">
+      <div class="detail-section">
+        <h3 class="detail-section-title">Business Information</h3>
+        <dl class="detail-list">
+          <dt>Business Name</dt>
+          <dd><%= @lead.business_name %></dd>
+
+          <% if @lead.contact_name.present? %>
+            <dt>Contact Name</dt>
+            <dd><%= @lead.contact_name %></dd>
+          <% end %>
+
+          <% if @lead.location.present? %>
+            <dt>Location</dt>
+            <dd><%= @lead.location %></dd>
+          <% end %>
+
+          <% if @lead.website.present? %>
+            <dt>Website</dt>
+            <dd><%= link_to @lead.website, @lead.website, target: "_blank" %></dd>
+          <% end %>
+        </dl>
+      </div>
+
+      <div class="detail-section">
+        <h3 class="detail-section-title">Contact Information</h3>
+        <dl class="detail-list">
+          <% if @lead.email.present? %>
+            <dt>Email</dt>
+            <dd><%= mail_to @lead.email %></dd>
+          <% end %>
+
+          <% if @lead.phone.present? %>
+            <dt>Phone</dt>
+            <dd><%= link_to @lead.phone, "tel:#{@lead.phone}" %></dd>
+          <% end %>
+        </dl>
+      </div>
+
+      <% if @lead.twitter.present? || @lead.instagram.present? || @lead.facebook.present? || @lead.tiktok.present? %>
+        <div class="detail-section">
+          <h3 class="detail-section-title">Social Media</h3>
+          <dl class="detail-list">
+            <% if @lead.twitter.present? %>
+              <dt>Twitter/X</dt>
+              <dd><%= link_to "@#{@lead.twitter}", "https://twitter.com/#{@lead.twitter}", target: "_blank" %></dd>
+            <% end %>
+
+            <% if @lead.instagram.present? %>
+              <dt>Instagram</dt>
+              <dd><%= link_to "@#{@lead.instagram}", "https://instagram.com/#{@lead.instagram}", target: "_blank" %></dd>
+            <% end %>
+
+            <% if @lead.facebook.present? %>
+              <dt>Facebook</dt>
+              <dd><%= link_to @lead.facebook, @lead.facebook, target: "_blank" %></dd>
+            <% end %>
+
+            <% if @lead.tiktok.present? %>
+              <dt>TikTok</dt>
+              <dd><%= link_to "@#{@lead.tiktok}", "https://tiktok.com/@#{@lead.tiktok}", target: "_blank" %></dd>
+            <% end %>
+          </dl>
+        </div>
+      <% end %>
+
+      <div class="detail-section">
+        <h3 class="detail-section-title">Status & Interest</h3>
+        <dl class="detail-list">
+          <dt>Status</dt>
+          <dd><span class="badge <%= @lead.status_badge_class %>"><%= @lead.status.titleize %></span></dd>
+
+          <dt>Interest Level</dt>
+          <dd><span class="badge <%= @lead.interest_level_badge_class %>"><%= @lead.interest_level.titleize %></span></dd>
+        </dl>
+      </div>
+
+      <% if @lead.notes.present? %>
+        <div class="detail-section">
+          <h3 class="detail-section-title">Notes</h3>
+          <p class="detail-notes"><%= simple_format @lead.notes %></p>
+        </div>
+      <% end %>
+
+      <div class="detail-section">
+        <h3 class="detail-section-title">Timestamps</h3>
+        <dl class="detail-list">
+          <dt>Created</dt>
+          <dd><%= @lead.created_at.strftime("%B %d, %Y at %I:%M %p") %></dd>
+
+          <dt>Last Updated</dt>
+          <dd><%= @lead.updated_at.strftime("%B %d, %Y at %I:%M %p") %></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>

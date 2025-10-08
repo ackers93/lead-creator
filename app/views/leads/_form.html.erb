@@ -1,0 +1,132 @@
+<%= form_with(model: lead, class: "lead-form") do |form| %>
+  <% if lead.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(lead.errors.count, "error") %> prohibited this lead from being saved:</h4>
+      <ul>
+        <% lead.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-sections">
+    <!-- Business Information -->
+    <div class="form-section">
+      <h3 class="form-section-title">Business Information</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :business_name, class: "form-label required" %>
+          <%= form.text_field :business_name, class: "form-control", placeholder: "Enter business name", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :contact_name, class: "form-label" %>
+          <%= form.text_field :contact_name, class: "form-control", placeholder: "Enter contact person name" %>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :location, class: "form-label" %>
+          <%= form.text_field :location, class: "form-control", placeholder: "City, State or Country" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :website, class: "form-label" %>
+          <%= form.url_field :website, class: "form-control", placeholder: "https://example.com" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="form-section">
+      <h3 class="form-section-title">Contact Information</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :email, class: "form-label" %>
+          <%= form.email_field :email, class: "form-control", placeholder: "email@example.com" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :phone, class: "form-label" %>
+          <%= form.telephone_field :phone, class: "form-control", placeholder: "+1 (555) 123-4567" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div class="form-section">
+      <h3 class="form-section-title">Social Media</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :twitter, "Twitter/X", class: "form-label" %>
+          <div class="input-group">
+            <span class="input-prefix">@</span>
+            <%= form.text_field :twitter, class: "form-control", placeholder: "username" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :instagram, class: "form-label" %>
+          <div class="input-group">
+            <span class="input-prefix">@</span>
+            <%= form.text_field :instagram, class: "form-control", placeholder: "username" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :facebook, class: "form-label" %>
+          <%= form.text_field :facebook, class: "form-control", placeholder: "facebook.com/page" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :tiktok, class: "form-label" %>
+          <div class="input-group">
+            <span class="input-prefix">@</span>
+            <%= form.text_field :tiktok, class: "form-control", placeholder: "username" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status and Interest -->
+    <div class="form-section">
+      <h3 class="form-section-title">Lead Status</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <%= form.label :status, class: "form-label required" %>
+          <%= form.select :status, 
+                         Lead.statuses.keys.map { |s| [s.titleize, s] }, 
+                         { prompt: "Select status" },
+                         { class: "form-control", required: true } %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :interest_level, class: "form-label required" %>
+          <%= form.select :interest_level, 
+                         Lead.interest_levels.keys.map { |l| [l.titleize, l] }, 
+                         { prompt: "Select interest level" },
+                         { class: "form-control", required: true } %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :notes, class: "form-label" %>
+        <%= form.text_area :notes, class: "form-control", rows: 4, placeholder: "Add any notes or comments about this lead..." %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", leads_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
+
