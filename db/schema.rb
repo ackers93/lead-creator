@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_07_033931) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_222307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "leads", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "business_name"
+    t.string "contact_name"
+    t.string "phone"
+    t.string "email"
+    t.string "twitter"
+    t.string "instagram"
+    t.string "facebook"
+    t.string "tiktok"
+    t.string "website"
+    t.string "location"
+    t.integer "interest_level"
+    t.integer "status"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_leads_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,4 +45,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_07_033931) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "leads", "users"
 end
