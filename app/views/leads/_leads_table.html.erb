@@ -1,0 +1,111 @@
+<div class="table-container">
+  <table class="leads-table">
+    <thead>
+      <tr>
+        <th>Business</th>
+        <th>Contact</th>
+        <th>Status</th>
+        <th>Interest</th>
+        <th>Location</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Social</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% leads.each do |lead| %>
+        <tr>
+          <td class="business-cell">
+            <div class="business-info">
+              <strong><%= link_to lead.business_name, lead_path(lead), class: "business-link" %></strong>
+              <% if lead.website.present? %>
+                <br>
+                <%= link_to "Website", lead.website, target: "_blank", class: "website-link" %>
+              <% end %>
+            </div>
+          </td>
+          <td>
+            <% if lead.contact_name.present? %>
+              <%= lead.contact_name %>
+            <% else %>
+              <span class="text-muted">—</span>
+            <% end %>
+          </td>
+          <td>
+            <span class="badge <%= lead.status_badge_class %>"><%= lead.status.titleize %></span>
+          </td>
+          <td>
+            <span class="badge <%= lead.interest_level_badge_class %>"><%= lead.interest_level.titleize %></span>
+          </td>
+          <td>
+            <% if lead.location.present? %>
+              <%= lead.location %>
+            <% else %>
+              <span class="text-muted">—</span>
+            <% end %>
+          </td>
+          <td>
+            <% if lead.phone.present? %>
+              <%= link_to lead.phone, "tel:#{lead.phone}", class: "phone-link" %>
+            <% else %>
+              <span class="text-muted">—</span>
+            <% end %>
+          </td>
+          <td>
+            <% if lead.email.present? %>
+              <%= mail_to lead.email, lead.email, class: "email-link" %>
+            <% else %>
+              <span class="text-muted">—</span>
+            <% end %>
+          </td>
+          <td class="social-cell">
+            <div class="social-links">
+              <% if lead.twitter.present? %>
+                <%= link_to "https://twitter.com/#{lead.twitter}", target: "_blank", class: "social-link", title: "Twitter" do %>
+                  <span class="social-icon">𝕏</span>
+                <% end %>
+              <% end %>
+              <% if lead.instagram.present? %>
+                <%= link_to "https://instagram.com/#{lead.instagram}", target: "_blank", class: "social-link", title: "Instagram" do %>
+                  <span class="social-icon">📷</span>
+                <% end %>
+              <% end %>
+              <% if lead.facebook.present? %>
+                <%= link_to lead.facebook, target: "_blank", class: "social-link", title: "Facebook" do %>
+                  <span class="social-icon">f</span>
+                <% end %>
+              <% end %>
+              <% if lead.tiktok.present? %>
+                <%= link_to "https://tiktok.com/@#{lead.tiktok}", target: "_blank", class: "social-link", title: "TikTok" do %>
+                  <span class="social-icon">🎵</span>
+                <% end %>
+              <% end %>
+              <% unless lead.twitter.present? || lead.instagram.present? || lead.facebook.present? || lead.tiktok.present? %>
+                <span class="text-muted">—</span>
+              <% end %>
+            </div>
+          </td>
+          <td class="actions-cell">
+            <div class="table-actions">
+              <%= link_to edit_lead_path(lead), class: "btn-icon", title: "Edit", data: { turbo_frame: "_top" } do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              <% end %>
+              <%= button_to lead_path(lead), 
+                           method: :delete, 
+                           data: { turbo_confirm: "Are you sure you want to delete this lead?", turbo_frame: "_top" },
+                           class: "btn-icon btn-icon-danger", 
+                           title: "Delete" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
