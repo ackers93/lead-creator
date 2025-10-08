@@ -31,7 +31,7 @@ class LeadsController < ApplicationController
     respond_to do |format|
       if @lead.save
         format.html { redirect_to leads_path, notice: "Lead was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Lead was successfully created." }
+        format.turbo_stream { redirect_to leads_path, notice: "Lead was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream { render :form_update, status: :unprocessable_entity }
@@ -43,8 +43,8 @@ class LeadsController < ApplicationController
   def update
     respond_to do |format|
       if @lead.update(lead_params)
-        format.html { redirect_to lead_path(@lead), notice: "Lead was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Lead was successfully updated." }
+        format.html { redirect_to leads_path, notice: "Lead was successfully updated." }
+        format.turbo_stream { redirect_to leads_path, notice: "Lead was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.turbo_stream { render :form_update, status: :unprocessable_entity }
@@ -58,7 +58,7 @@ class LeadsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to leads_path, notice: "Lead was successfully deleted." }
-      format.turbo_stream { flash.now[:notice] = "Lead was successfully deleted." }
+      format.turbo_stream { redirect_to leads_path, notice: "Lead was successfully deleted." }
     end
   end
 

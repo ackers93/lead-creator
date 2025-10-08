@@ -14,7 +14,7 @@
       <% end %>
       <%= button_to lead_path(lead), 
                    method: :delete, 
-                   data: { turbo_confirm: "Are you sure you want to delete this lead?" },
+                   data: { turbo_confirm: "Are you sure you want to delete this lead?", turbo_frame: "_top" },
                    class: "btn-icon btn-icon-danger", 
                    title: "Delete" do %>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
