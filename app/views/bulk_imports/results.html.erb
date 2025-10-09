@@ -1,0 +1,105 @@
+<div class="bulk-import-page">
+  <div class="container">
+    <div class="page-header">
+      <h1>Search Results</h1>
+      <p class="subtitle">
+        Found <%= @results.size %> results for "<strong><%= @query %></strong>" in "<strong><%= @location %></strong>"
+      </p>
+    </div>
+
+    <% if @results.any? %>
+      <%= form_with url: import_bulk_imports_path, method: :post, class: "import-form" do |f| %>
+        <div class="results-actions">
+          <div class="select-actions">
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="selectAll()">Select All</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="selectNone()">Select None</button>
+          </div>
+          <div class="import-actions">
+            <%= f.submit "Import Selected Leads", class: "btn btn-success btn-lg", data: { confirm: "Are you sure you want to import the selected leads?" } %>
+            <%= link_to "New Search", new_bulk_import_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+
+        <div class="results-grid">
+          <% @results.each_with_index do |place, index| %>
+            <div class="result-card">
+              <div class="result-card-header">
+                <div class="checkbox-container">
+                  <%= check_box_tag "place_ids[]", place[:place_id], true, id: "place_#{index}", class: "result-checkbox" %>
+                  <%= label_tag "place_#{index}", "", class: "checkbox-label" %>
+                </div>
+                <div class="result-info">
+                  <h3><%= place[:business_name] %></h3>
+                  <% if place[:business_status] == 'CLOSED_PERMANENTLY' %>
+                    <span class="badge badge-danger">Permanently Closed</span>
+                  <% elsif place[:business_status] == 'CLOSED_TEMPORARILY' %>
+                    <span class="badge badge-warning">Temporarily Closed</span>
+                  <% elsif place[:business_status] == 'OPERATIONAL' %>
+                    <span class="badge badge-success">Open</span>
+                  <% end %>
+                </div>
+              </div>
+              
+              <div class="result-card-body">
+                <% if place[:location].present? %>
+                  <div class="result-detail">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span><%= place[:location] %></span>
+                  </div>
+                <% end %>
+
+                <% if place[:latitude] && place[:longitude] %>
+                  <div class="result-detail">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                    <a href="https://www.google.com/maps/search/?api=1&query=<%= place[:latitude] %>,<%= place[:longitude] %>" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="result-link">
+                      View on Google Maps
+                    </a>
+                  </div>
+                <% end %>
+              </div>
+              
+              <div class="result-card-footer">
+                <small class="text-muted">Place ID: <%= place[:place_id] %></small>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="results-actions results-actions-bottom">
+          <%= f.submit "Import Selected Leads", class: "btn btn-success btn-lg", data: { confirm: "Are you sure you want to import the selected leads?" } %>
+          <%= link_to "New Search", new_bulk_import_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <h3>No results found</h3>
+        <p>Try adjusting your search parameters or searching in a different location.</p>
+        <%= link_to "New Search", new_bulk_import_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function selectAll() {
+    document.querySelectorAll('.result-checkbox').forEach(checkbox => {
+      checkbox.checked = true;
+    });
+  }
+  
+  function selectNone() {
+    document.querySelectorAll('.result-checkbox').forEach(checkbox => {
+      checkbox.checked = false;
+    });
+  }
+</script>
+

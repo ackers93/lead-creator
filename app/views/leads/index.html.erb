@@ -25,6 +25,7 @@
             Table
           </button>
         </div>
+        <%= link_to "Bulk Import", new_bulk_import_path, class: "btn btn-success" %>
         <%= link_to "New Lead", new_lead_path, class: "btn btn-primary" %>
       </div>
     </div>
@@ -78,14 +79,31 @@
         <div class="leads-table" data-view-toggle-target="tableView" style="display: none;">
           <%= render "leads_table", leads: @leads %>
         </div>
-      <% else %>
-        <div class="empty-state">
-          <div class="empty-state-icon">📋</div>
-          <h3>No leads found</h3>
-          <p>Start by creating your first lead or adjust your filters.</p>
-          <%= link_to "Create Lead", new_lead_path, class: "btn btn-primary", data: { turbo_frame: "_top" } %>
-        </div>
-      <% end %>
+          <% else %>
+            <div class="empty-state">
+              <div class="empty-state-icon">📋</div>
+              <h3>No leads found</h3>
+              <% if params[:query].present? || params[:status].present? || params[:interest_level].present? %>
+                <p>No leads match your current filters. Try adjusting your search.</p>
+              <% else %>
+                <p>Start building your lead pipeline! You can create leads manually or import them in bulk from Google Maps.</p>
+                <div class="empty-state-actions">
+                  <%= link_to new_lead_path, class: "btn btn-primary", data: { turbo_frame: "_top" } do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Create Lead Manually
+                  <% end %>
+                  <%= link_to new_bulk_import_path, class: "btn btn-success" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-7a2 2 0 012-2h2m3-4H9a2 2 0 00-2 2v7a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-1m-1 4l-3 3m0 0l-3-3m3 3V3" />
+                    </svg>
+                    Bulk Import from Google Maps
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
     <% end %>
   </div>
 </div>

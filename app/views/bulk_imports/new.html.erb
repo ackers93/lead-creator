@@ -1,0 +1,72 @@
+<div class="bulk-import-page">
+  <div class="container">
+    <div class="page-header">
+      <h1>Bulk Import Leads</h1>
+      <p class="subtitle">Search for businesses on Google Maps and import them as leads</p>
+    </div>
+
+    <div class="bulk-import-form-container">
+      <%= form_with url: search_bulk_imports_path, method: :post, class: "bulk-import-form" do |f| %>
+        <div class="form-section">
+          <h3>Search Parameters</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= f.label :query, "Business Type", class: "form-label" %>
+              <%= f.text_field :query, 
+                              class: "form-control", 
+                              placeholder: "e.g., Plumbers, Restaurants, Auto Repair",
+                              required: true,
+                              autofocus: true %>
+              <small class="form-text">What type of business are you looking for?</small>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :location, "Location", class: "form-label" %>
+              <%= f.text_field :location, 
+                              class: "form-control", 
+                              placeholder: "e.g., Camarillo, CA",
+                              required: true %>
+              <small class="form-text">City, neighborhood, or zip code</small>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <%= f.submit "Search Google Maps", class: "btn btn-primary btn-lg" %>
+            <%= link_to "Back to Leads", leads_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <div class="info-box">
+            <h4>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              How it works
+            </h4>
+            <ol>
+              <li>Enter the type of business you want to find (e.g., "Plumbers", "Coffee Shops")</li>
+              <li>Enter the location to search (e.g., "Camarillo, CA", "90210")</li>
+              <li>Review the results from Google Maps</li>
+              <li>Select which businesses you want to add as leads</li>
+              <li>Import them with one click!</li>
+            </ol>
+          </div>
+
+          <div class="info-box info-box-warning">
+            <h4>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              API Key Required
+            </h4>
+            <p>This feature requires a Google Places API key. Make sure you have set the <code>GOOGLE_PLACES_API_KEY</code> environment variable.</p>
+            <p><small>Don't have one? <a href="https://developers.google.com/maps/documentation/places/web-service/get-api-key" target="_blank" rel="noopener noreferrer">Get a Google Places API key</a></small></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
