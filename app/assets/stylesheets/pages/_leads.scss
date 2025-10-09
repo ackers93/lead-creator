@@ -321,6 +321,25 @@
     color: $text-muted;
     margin-bottom: map.get($spacers, 4);
   }
+
+  .empty-state-actions {
+    display: flex;
+    justify-content: center;
+    gap: map.get($spacers, 3);
+    flex-wrap: wrap;
+    margin-top: map.get($spacers, 3);
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: map.get($spacers, 2);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
 
 // Form Container

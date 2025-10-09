@@ -1,0 +1,347 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Bulk Import Page Styles
+.bulk-import-page {
+  padding: map.get($spacers, 4) 0;
+  min-height: calc(100vh - 150px);
+
+  .page-header {
+    margin-bottom: map.get($spacers, 4);
+    padding-bottom: map.get($spacers, 3);
+    border-bottom: 2px solid $border-color;
+
+    h1 {
+      margin-bottom: map.get($spacers, 2);
+    }
+
+    .subtitle {
+      color: $text-secondary;
+      font-size: $font-size-lg;
+      margin: 0;
+
+      strong {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Form Container
+.bulk-import-form-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bulk-import-form {
+  .form-section {
+    background-color: $bg-white;
+    border-radius: $border-radius;
+    padding: map.get($spacers, 4);
+    margin-bottom: map.get($spacers, 4);
+    @include box-shadow(1);
+
+    h3 {
+      margin-bottom: map.get($spacers, 3);
+      padding-bottom: map.get($spacers, 2);
+      border-bottom: 1px solid $border-color;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: map.get($spacers, 3);
+      margin-bottom: map.get($spacers, 3);
+
+      @include respond-to("tablet") {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-text {
+      display: block;
+      margin-top: map.get($spacers, 1);
+      color: $text-muted;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+// Info Sections
+.info-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: map.get($spacers, 3);
+  margin-top: map.get($spacers, 3);
+
+  @include respond-to("tablet") {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-box {
+  background-color: $bg-white;
+  border-radius: $border-radius;
+  padding: map.get($spacers, 3);
+  @include box-shadow(1);
+  border-left: 4px solid $primary-color;
+
+  h4 {
+    display: flex;
+    align-items: center;
+    gap: map.get($spacers, 2);
+    margin-bottom: map.get($spacers, 2);
+    color: $primary-color;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+  }
+
+  ol {
+    margin-left: map.get($spacers, 3);
+    
+    li {
+      margin-bottom: map.get($spacers, 1);
+      color: $text-secondary;
+    }
+  }
+
+  p {
+    margin-bottom: map.get($spacers, 2);
+    color: $text-secondary;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  code {
+    background-color: $bg-light;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: $font-size-sm;
+    color: $dark-color;
+  }
+
+  a {
+    color: $primary-color;
+    text-decoration: underline;
+
+    &:hover {
+      color: color.adjust($primary-color, $lightness: -10%);
+    }
+  }
+
+  small {
+    display: block;
+    margin-top: map.get($spacers, 2);
+  }
+}
+
+.info-box-warning {
+  border-left-color: $warning-color;
+
+  h4 {
+    color: $warning-color;
+  }
+}
+
+// Results Page
+.import-form {
+  .results-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: map.get($spacers, 4);
+    padding: map.get($spacers, 3);
+    background-color: $bg-white;
+    border-radius: $border-radius;
+    @include box-shadow(1);
+
+    @include respond-to("tablet") {
+      flex-direction: column;
+      gap: map.get($spacers, 2);
+      align-items: stretch;
+    }
+
+    .select-actions {
+      display: flex;
+      gap: map.get($spacers, 2);
+
+      @include respond-to("tablet") {
+        justify-content: center;
+      }
+    }
+
+    .import-actions {
+      display: flex;
+      gap: map.get($spacers, 2);
+
+      @include respond-to("tablet") {
+        flex-direction: column;
+      }
+    }
+
+    &.results-actions-bottom {
+      margin-top: map.get($spacers, 4);
+      margin-bottom: 0;
+      justify-content: center;
+
+      @include respond-to("tablet") {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: map.get($spacers, 3);
+  margin-bottom: map.get($spacers, 4);
+
+  @include respond-to("tablet") {
+    grid-template-columns: 1fr;
+  }
+}
+
+.result-card {
+  background-color: $bg-white;
+  border-radius: $border-radius;
+  @include box-shadow(1);
+  transition: all $transition-speed ease;
+  overflow: hidden;
+
+  &:hover {
+    @include box-shadow(2);
+    transform: translateY(-2px);
+  }
+
+  .result-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: map.get($spacers, 2);
+    padding: map.get($spacers, 3);
+    background-color: $bg-light;
+    border-bottom: 1px solid $border-color;
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      padding-top: 2px;
+
+      .result-checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: $primary-color;
+      }
+
+      .checkbox-label {
+        margin: 0;
+      }
+    }
+
+    .result-info {
+      flex: 1;
+
+      h3 {
+        margin: 0 0 map.get($spacers, 1) 0;
+        font-size: $font-size-lg;
+        color: $text-primary;
+      }
+    }
+  }
+
+  .result-card-body {
+    padding: map.get($spacers, 3);
+
+    .result-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: map.get($spacers, 2);
+      margin-bottom: map.get($spacers, 2);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        color: $text-muted;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      span {
+        color: $text-secondary;
+        font-size: $font-size-sm;
+        line-height: 1.5;
+      }
+
+      .result-link {
+        color: $primary-color;
+        text-decoration: none;
+        font-size: $font-size-sm;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .result-card-footer {
+    padding: map.get($spacers, 2) map.get($spacers, 3);
+    background-color: $bg-light;
+    border-top: 1px solid $border-color;
+
+    .text-muted {
+      color: $text-muted;
+      font-size: $font-size-sm;
+      margin: 0;
+    }
+  }
+}
+
+// Responsive adjustments
+@include respond-to("tablet") {
+  .bulk-import-page {
+    .page-header {
+      .subtitle {
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+  .bulk-import-form {
+    .form-section {
+      padding: map.get($spacers, 3);
+    }
+  }
+}
+
+@include respond-to("mobile") {
+  .bulk-import-page {
+    padding: map.get($spacers, 3) 0;
+  }
+
+  .results-grid {
+    gap: map.get($spacers, 2);
+  }
+
+  .result-card {
+    .result-card-header,
+    .result-card-body {
+      padding: map.get($spacers, 2);
+    }
+  }
+}
+
