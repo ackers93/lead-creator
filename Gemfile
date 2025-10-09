@@ -25,6 +25,9 @@ gem "bcrypt", "~> 3.1.7"
 # Authentication solution for Rails [https://github.com/heartcombo/devise]
 gem "devise"
 
+# HTTP client for API requests [https://github.com/httprb/http]
+gem "http"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
