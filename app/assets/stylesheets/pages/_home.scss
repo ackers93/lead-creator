@@ -1,33 +1,37 @@
+@use "sass:map";
+@use "../variables" as *;
+@use "../mixins" as *;
+
 // Home page styles
 .home-page {
-  padding: map-get($spacers, 5) 0;
+  padding: map.get($spacers, 5) 0;
   min-height: calc(100vh - 200px);
   
   .welcome-section {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
-    padding: map-get($spacers, 5);
+    padding: map.get($spacers, 5);
     background-color: $bg-white;
     border-radius: $border-radius;
     @include box-shadow(2);
     
     h1 {
       color: $primary-color;
-      margin-bottom: map-get($spacers, 4);
+      margin-bottom: map.get($spacers, 4);
     }
     
     p {
       font-size: $font-size-lg;
       color: $text-secondary;
-      margin-bottom: map-get($spacers, 3);
+      margin-bottom: map.get($spacers, 3);
     }
     
     .auth-links {
       display: flex;
-      gap: map-get($spacers, 3);
+      gap: map.get($spacers, 3);
       justify-content: center;
-      margin-top: map-get($spacers, 4);
+      margin-top: map.get($spacers, 4);
       
       @include respond-to("mobile") {
         flex-direction: column;

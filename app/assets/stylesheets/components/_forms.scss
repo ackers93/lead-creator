@@ -1,11 +1,15 @@
+@use "sass:map";
+@use "../variables" as *;
+@use "../mixins" as *;
+
 // Form styles
 .form-group {
-  margin-bottom: map-get($spacers, 3);
+  margin-bottom: map.get($spacers, 3);
 }
 
 .form-label {
   display: block;
-  margin-bottom: map-get($spacers, 1);
+  margin-bottom: map.get($spacers, 1);
   font-weight: 500;
   color: $text-primary;
 }
@@ -13,7 +17,7 @@
 .form-control {
   display: block;
   width: 100%;
-  padding: map-get($spacers, 2);
+  padding: map.get($spacers, 2);
   font-size: $font-size-base;
   line-height: $line-height-base;
   color: $text-primary;
@@ -41,17 +45,17 @@ textarea.form-control {
 .form-check {
   display: flex;
   align-items: center;
-  margin-bottom: map-get($spacers, 2);
+  margin-bottom: map.get($spacers, 2);
   
   input[type="checkbox"],
   input[type="radio"] {
-    margin-right: map-get($spacers, 2);
+    margin-right: map.get($spacers, 2);
   }
 }
 
 .form-text {
   display: block;
-  margin-top: map-get($spacers, 1);
+  margin-top: map.get($spacers, 1);
   font-size: $font-size-sm;
   color: $text-muted;
 }
@@ -59,29 +63,29 @@ textarea.form-control {
 // Devise forms styling
 .devise-form {
   max-width: 450px;
-  margin: map-get($spacers, 5) auto;
-  padding: map-get($spacers, 4);
+  margin: map.get($spacers, 5) auto;
+  padding: map.get($spacers, 4);
   background-color: $bg-white;
   border-radius: $border-radius;
   @include box-shadow(2);
   
   h2 {
-    margin-bottom: map-get($spacers, 4);
+    margin-bottom: map.get($spacers, 4);
     text-align: center;
   }
   
   .form-actions {
-    margin-top: map-get($spacers, 4);
+    margin-top: map.get($spacers, 4);
   }
   
   .devise-links {
-    margin-top: map-get($spacers, 3);
+    margin-top: map.get($spacers, 3);
     text-align: center;
     font-size: $font-size-sm;
     
     a {
       display: block;
-      margin-top: map-get($spacers, 1);
+      margin-top: map.get($spacers, 1);
     }
   }
 }

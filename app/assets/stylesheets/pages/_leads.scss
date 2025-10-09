@@ -1,13 +1,18 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
 // Leads page styles
 .leads-page {
-  padding: map-get($spacers, 4) 0;
+  padding: map.get($spacers, 4) 0;
   min-height: calc(100vh - 150px);
 }
 
 .page-header {
   @include flex-between;
-  margin-bottom: map-get($spacers, 4);
-  padding-bottom: map-get($spacers, 3);
+  margin-bottom: map.get($spacers, 4);
+  padding-bottom: map.get($spacers, 3);
   border-bottom: 2px solid $border-color;
 
   h1 {
@@ -17,7 +22,7 @@
 
   .header-actions {
     display: flex;
-    gap: map-get($spacers, 2);
+    gap: map.get($spacers, 2);
     align-items: center;
   }
 }
@@ -32,8 +37,8 @@
   .view-toggle-btn {
     display: flex;
     align-items: center;
-    gap: map-get($spacers, 1);
-    padding: map-get($spacers, 1) map-get($spacers, 2);
+    gap: map.get($spacers, 1);
+    padding: map.get($spacers, 1) map.get($spacers, 2);
     border: none;
     border-radius: 0;
     background-color: $bg-white;
@@ -59,7 +64,7 @@
       color: white;
 
       &:hover {
-        background-color: darken($primary-color, 10%);
+        background-color: color.adjust($primary-color, $lightness: -10%);
         color: white;
       }
     }
@@ -69,16 +74,16 @@
 // Filters Section
 .leads-filters {
   background-color: $bg-white;
-  padding: map-get($spacers, 3);
+  padding: map.get($spacers, 3);
   border-radius: $border-radius;
-  margin-bottom: map-get($spacers, 4);
+  margin-bottom: map.get($spacers, 4);
   @include box-shadow(1);
 
   .filters-form {
     .filter-row {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr auto;
-      gap: map-get($spacers, 2);
+      gap: map.get($spacers, 2);
       align-items: end;
 
       @include respond-to("tablet") {
@@ -88,7 +93,7 @@
 
     .filter-group {
       display: flex;
-      gap: map-get($spacers, 2);
+      gap: map.get($spacers, 2);
       align-items: center;
     }
 
@@ -102,8 +107,8 @@
 .leads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: map-get($spacers, 3);
-  margin-bottom: map-get($spacers, 4);
+  gap: map.get($spacers, 3);
+  margin-bottom: map.get($spacers, 4);
 
   @include respond-to("mobile") {
     grid-template-columns: 1fr;
@@ -128,7 +133,7 @@
 
 .lead-card-header {
   @include flex-between;
-  padding: map-get($spacers, 3);
+  padding: map.get($spacers, 3);
   border-bottom: 1px solid $border-color;
   background-color: $bg-light;
 
@@ -136,7 +141,7 @@
     flex: 1;
 
     h3 {
-      margin: 0 0 map-get($spacers, 1) 0;
+      margin: 0 0 map.get($spacers, 1) 0;
       font-size: 1.25rem;
 
       a {
@@ -158,24 +163,24 @@
 
   .lead-card-actions {
     display: flex;
-    gap: map-get($spacers, 1);
+    gap: map.get($spacers, 1);
   }
 }
 
 .lead-card-body {
-  padding: map-get($spacers, 3);
+  padding: map.get($spacers, 3);
 }
 
 .lead-badges {
   display: flex;
-  gap: map-get($spacers, 2);
-  margin-bottom: map-get($spacers, 3);
+  gap: map.get($spacers, 2);
+  margin-bottom: map.get($spacers, 3);
   flex-wrap: wrap;
 }
 
 .badge {
   display: inline-block;
-  padding: map-get($spacers, 1) map-get($spacers, 2);
+  padding: map.get($spacers, 1) map.get($spacers, 2);
   border-radius: calc(#{$border-radius} / 2);
   font-size: $font-size-sm;
   font-weight: 600;
@@ -193,13 +198,13 @@
 .lead-info {
   display: flex;
   flex-direction: column;
-  gap: map-get($spacers, 2);
+  gap: map.get($spacers, 2);
 }
 
 .lead-info-item {
   display: flex;
   align-items: center;
-  gap: map-get($spacers, 2);
+  gap: map.get($spacers, 2);
   font-size: $font-size-sm;
   color: $text-secondary;
 
@@ -222,9 +227,9 @@
 
 .lead-social {
   display: flex;
-  gap: map-get($spacers, 2);
-  margin-top: map-get($spacers, 3);
-  padding-top: map-get($spacers, 3);
+  gap: map.get($spacers, 2);
+  margin-top: map.get($spacers, 3);
+  padding-top: map.get($spacers, 3);
   border-top: 1px solid $border-color;
 
   .social-link {
@@ -251,7 +256,7 @@
 }
 
 .lead-card-footer {
-  padding: map-get($spacers, 3);
+  padding: map.get($spacers, 3);
   background-color: $bg-light;
   border-top: 1px solid $border-color;
 
@@ -297,24 +302,24 @@
 // Empty State
 .empty-state {
   text-align: center;
-  padding: map-get($spacers, 5);
+  padding: map.get($spacers, 5);
   background-color: $bg-white;
   border-radius: $border-radius;
   @include box-shadow(1);
 
   .empty-state-icon {
     font-size: 64px;
-    margin-bottom: map-get($spacers, 3);
+    margin-bottom: map.get($spacers, 3);
   }
 
   h3 {
     color: $text-secondary;
-    margin-bottom: map-get($spacers, 2);
+    margin-bottom: map.get($spacers, 2);
   }
 
   p {
     color: $text-muted;
-    margin-bottom: map-get($spacers, 4);
+    margin-bottom: map.get($spacers, 4);
   }
 }
 
@@ -326,7 +331,7 @@
 
 .lead-form {
   background-color: $bg-white;
-  padding: map-get($spacers, 4);
+  padding: map.get($spacers, 4);
   border-radius: $border-radius;
   @include box-shadow(2);
 }
@@ -334,11 +339,11 @@
 .form-sections {
   display: flex;
   flex-direction: column;
-  gap: map-get($spacers, 4);
+  gap: map.get($spacers, 4);
 }
 
 .form-section {
-  padding-bottom: map-get($spacers, 4);
+  padding-bottom: map.get($spacers, 4);
   border-bottom: 1px solid $border-color;
 
   &:last-child {
@@ -350,16 +355,16 @@
 .form-section-title {
   font-size: 1.25rem;
   color: $primary-color;
-  margin-bottom: map-get($spacers, 3);
-  padding-bottom: map-get($spacers, 2);
+  margin-bottom: map.get($spacers, 3);
+  padding-bottom: map.get($spacers, 2);
   border-bottom: 2px solid $primary-color;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: map-get($spacers, 3);
-  margin-bottom: map-get($spacers, 3);
+  gap: map.get($spacers, 3);
+  margin-bottom: map.get($spacers, 3);
 
   &:last-child {
     margin-bottom: 0;
@@ -384,7 +389,7 @@
   .input-prefix {
     display: flex;
     align-items: center;
-    padding: 0 map-get($spacers, 2);
+    padding: 0 map.get($spacers, 2);
     background-color: $bg-light;
     border: 1px solid $border-color;
     border-right: none;
@@ -400,9 +405,9 @@
 
 .form-actions {
   display: flex;
-  gap: map-get($spacers, 2);
-  padding-top: map-get($spacers, 4);
-  margin-top: map-get($spacers, 4);
+  gap: map.get($spacers, 2);
+  padding-top: map.get($spacers, 4);
+  margin-top: map.get($spacers, 4);
   border-top: 1px solid $border-color;
 }
 
@@ -410,12 +415,12 @@
 .lead-detail {
   background-color: $bg-white;
   border-radius: $border-radius;
-  padding: map-get($spacers, 4);
+  padding: map.get($spacers, 4);
   @include box-shadow(2);
 
   .detail-section {
-    margin-bottom: map-get($spacers, 4);
-    padding-bottom: map-get($spacers, 4);
+    margin-bottom: map.get($spacers, 4);
+    padding-bottom: map.get($spacers, 4);
     border-bottom: 1px solid $border-color;
 
     &:last-child {
@@ -428,13 +433,13 @@
   .detail-section-title {
     font-size: 1.125rem;
     color: $primary-color;
-    margin-bottom: map-get($spacers, 3);
+    margin-bottom: map.get($spacers, 3);
   }
 
   .detail-list {
     display: grid;
     grid-template-columns: 150px 1fr;
-    gap: map-get($spacers, 2) map-get($spacers, 3);
+    gap: map.get($spacers, 2) map.get($spacers, 3);
     align-items: start;
 
     @include respond-to("mobile") {
@@ -477,7 +482,7 @@
       background-color: $bg-light;
       
       th {
-        padding: map-get($spacers, 3) map-get($spacers, 2);
+        padding: map.get($spacers, 3) map.get($spacers, 2);
         text-align: left;
         font-weight: 600;
         color: $text-primary;
@@ -485,11 +490,11 @@
         white-space: nowrap;
 
         &:first-child {
-          padding-left: map-get($spacers, 3);
+          padding-left: map.get($spacers, 3);
         }
 
         &:last-child {
-          padding-right: map-get($spacers, 3);
+          padding-right: map.get($spacers, 3);
         }
       }
     }
@@ -509,15 +514,15 @@
       }
 
       td {
-        padding: map-get($spacers, 3) map-get($spacers, 2);
+        padding: map.get($spacers, 3) map.get($spacers, 2);
         vertical-align: middle;
 
         &:first-child {
-          padding-left: map-get($spacers, 3);
+          padding-left: map.get($spacers, 3);
         }
 
         &:last-child {
-          padding-right: map-get($spacers, 3);
+          padding-right: map.get($spacers, 3);
         }
       }
     }
@@ -560,7 +565,7 @@
     .social-cell {
       .social-links {
         display: flex;
-        gap: map-get($spacers, 1);
+        gap: map.get($spacers, 1);
 
         .social-link {
           display: flex;
@@ -589,7 +594,7 @@
     .actions-cell {
       .table-actions {
         display: flex;
-        gap: map-get($spacers, 1);
+        gap: map.get($spacers, 1);
       }
     }
 
@@ -608,7 +613,7 @@
 
       thead th,
       tbody td {
-        padding: map-get($spacers, 2);
+        padding: map.get($spacers, 2);
       }
     }
   }

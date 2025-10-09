@@ -1,15 +1,20 @@
+@use "sass:map";
+@use "sass:color";
+@use "../variables" as *;
+@use "../mixins" as *;
+
 // Header styles
 .header {
   background-color: $bg-white;
   border-bottom: 1px solid $border-color;
-  padding: map-get($spacers, 3) 0;
+  padding: map.get($spacers, 3) 0;
   @include box-shadow(1);
   
   .header-container {
     @include flex-between;
     max-width: $container-max-width;
     margin: 0 auto;
-    padding: 0 map-get($spacers, 3);
+    padding: 0 map.get($spacers, 3);
   }
   
   .header-brand {
@@ -18,13 +23,13 @@
     color: $primary-color;
     
     &:hover {
-      color: darken($primary-color, 10%);
+      color: color.adjust($primary-color, $lightness: -10%);
     }
   }
   
   .header-nav {
     display: flex;
-    gap: map-get($spacers, 3);
+    gap: map.get($spacers, 3);
     align-items: center;
   }
 }
