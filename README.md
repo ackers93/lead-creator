@@ -54,13 +54,34 @@ The application will be available at `http://localhost:3000`
 - Email confirmation (configurable)
 - Remember me functionality
 
+### ✅ Lead Management
+- Full CRUD operations for leads
+- Business information tracking (name, contact, location)
+- Social media links (Twitter, Instagram, Facebook, TikTok)
+- Interest level and status tracking
+- Search and filter capabilities
+- Card and table view options
+- Notes for each lead
+
+### ✅ Bulk Import (Google Places API)
+- Search for businesses on Google Maps
+- Import multiple leads at once
+- Select specific businesses to import
+- Automatically fetch business details (name, address, phone, website)
+- Filter out closed businesses
+- [Setup Guide](BULK_IMPORT_SETUP.md)
+
 ### ✅ Modern Styling
-- SCSS with organized architecture
+- SCSS with modern module system
+- Organized architecture
 - Responsive design
 - Reusable components
 - Custom color scheme and variables
 
-### ✅ Rails 8 Features
+### ✅ Rails 8 & Hotwire
+- Turbo for SPA-like experience
+- Stimulus for JavaScript interactions
+- Modern form helpers
 - Solid Cache for caching
 - Solid Queue for background jobs
 - Solid Cable for WebSockets
@@ -120,11 +141,24 @@ kamal deploy
 
 ## Environment Variables
 
+### Required for Bulk Import Feature
+
+To use the Google Places bulk import feature, you need to set up a Google Places API key:
+
+```bash
+export GOOGLE_PLACES_API_KEY="your_api_key_here"
+```
+
+See [BULK_IMPORT_SETUP.md](BULK_IMPORT_SETUP.md) for detailed setup instructions.
+
+### Optional Environment Variables
+
 Create a `.env` file for local development (not committed to git):
 
 ```env
 DATABASE_URL=postgresql://localhost/lead_creator_development
 RAILS_MASTER_KEY=<your-master-key>
+GOOGLE_PLACES_API_KEY=<your-google-api-key>
 ```
 
 ## Contributing
